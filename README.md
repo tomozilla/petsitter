@@ -1,3 +1,5 @@
+### READ ME ###
+
 To Run this code on your localhost.
 
 1. Download the repo to your local machine by running `git clone https://github.com/tomohiro-mitani/petsitter.git`
