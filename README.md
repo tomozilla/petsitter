@@ -4,4 +4,5 @@ To Run this code on your localhost.
 2. touch .env
 3. Add FB_ID, FB_SECRET to your .env. Ask tomo for ID and SECRET.
 4. bundle install
-5. Run `rails s` or `bundle exec puma -C config/puma.rb`
+5. Run `rails db:migrate`
+6. Run `rails s` or `bundle exec puma -C config/puma.rb`
