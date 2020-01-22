@@ -1,0 +1,11 @@
+{
+  "name": "Pet Sitters",
+  "description": "A market place for pet sitters",
+  "repository": "https://github.com/tomohiro-mitani/petsitter",
+  "addons": ["heroku-postgresql:standard-0"],
+  "environments": {
+    "review": {
+      "addons": ["heroku-postgresql:hobby-dev"]
+    }
+  }
+}
