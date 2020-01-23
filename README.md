@@ -8,3 +8,4 @@ To Run this code on your localhost.
 4. bundle install
 5. Run `rails db:migrate`
 6. Run `rails s` or `bundle exec puma -C config/puma.rb`
+7. Happy Coding!
