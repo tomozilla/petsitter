@@ -8,22 +8,27 @@ random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
   newSitter = Sitter.new
   newSitter.name = Faker::Name.name
   newSitter.email = Faker::Internet.email
-  newSitter.location = Faker::Address.city + " " + Faker::Address.country
+  newSitter.password = "111111"
+  newSitter.location = Faker::Address.city + ", " + Faker::Address.country
+  newSitter.save!
 
   # Create a new Owner
   newOwner = Owner.new
   newOwner.name = Faker::Name.name
   newOwner.email = Faker::Internet.email
-  newOwner.location = Faker::Address.city + " " + Faker::Address.country
+  newOwner.password = "111111"
+  newOwner.location = Faker::Address.city + ", " + Faker::Address.country
+  newOwner.save!
 
     # Create 3 new job with a relevant owner
-    3.times. do
+    3.times do
       newJob = Job.new
       newJob.owner = newOwner
       newJob.date = Faker::Date.between(from: 2.days.ago, to: Date.today)
       newJob.location = Faker::Address.city + " " + Faker::Address.country
       newJob.number_of_dogs = Random.rand(1..8)
       newJob.description = random_text
+      newJob.save!
 
         # Create 4 bookings with a relevant job
         4.times do
@@ -32,14 +37,16 @@ random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           newBooking.status = "pending"
           newBooking.job = newJob
           newBooking.sitter = newSitter
+          newBooking.save!
         end
     end
     # Create 6 reviews with relevant user and owner
     6.times do 
       newReview = Review.new
-      newReview.user = newUser
+      newReview.sitter = newSitter
       newReview.owner = newOwner
       newReview.rate = Random.rand(1..5)
-      newReview.comments = random_text
+      newReview.comment = random_text
+      newReview.save!
     end
 end
