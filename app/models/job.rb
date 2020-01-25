@@ -1,5 +1,6 @@
 class Job < ApplicationRecord
   belongs_to :owner
+
   validates :date, presence: true
   validates :location, presence: true
   validates :description, presence: true
