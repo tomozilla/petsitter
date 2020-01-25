@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
   resources :owners, only: [:show]
-  resources :jobs, only: [:create, :edit, :new, :show] do
+  resources :jobs, only: [:create, :edit, :update, :new, :show] do
     resources :bookings, only: [:index]
   end
   resources :bookings, only: [:show]
