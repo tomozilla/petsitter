@@ -5,5 +5,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    current_owner.bookings
+    raise
   end
 end
