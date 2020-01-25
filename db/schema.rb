@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_124006) do
+ActiveRecord::Schema.define(version: 2020_01_25_035234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 2020_01_23_124006) do
     t.bigint "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "sitter_id"
     t.index ["job_id"], name: "index_bookings_on_job_id"
+    t.index ["sitter_id"], name: "index_bookings_on_sitter_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -40,6 +42,13 @@ ActiveRecord::Schema.define(version: 2020_01_23_124006) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -56,10 +65,15 @@ ActiveRecord::Schema.define(version: 2020_01_23_124006) do
   create_table "sitters", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.bigint "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_sitters_on_booking_id"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_sitters_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_sitters_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,8 +96,8 @@ ActiveRecord::Schema.define(version: 2020_01_23_124006) do
   end
 
   add_foreign_key "bookings", "jobs"
+  add_foreign_key "bookings", "sitters"
   add_foreign_key "jobs", "owners"
   add_foreign_key "reviews", "owners"
   add_foreign_key "reviews", "sitters"
-  add_foreign_key "sitters", "bookings"
 end
