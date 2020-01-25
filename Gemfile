@@ -17,6 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'omniauth-facebook'
 gem 'newrelic_rpm'
+gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
