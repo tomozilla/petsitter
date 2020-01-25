@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sitters/index'
+  get 'sitters/show'
   devise_for :sitters
   devise_for :owners
   # devise_for :users,
