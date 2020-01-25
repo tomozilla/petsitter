@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   # before_action is a problem.
-  before_action :authenticate_sitter!, only: [:home]
+  skip_before_action :authenticate_owner!, only: [:home]
 
   def home
     # authenticate_sitter!
@@ -8,10 +8,8 @@ class PagesController < ApplicationController
 
   def dashboard
     current_owner.bookings
-    raise
   end
 
   def test
-    raise
   end
 end
