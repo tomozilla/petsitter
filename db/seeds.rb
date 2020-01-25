@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
 # Assign comment string for reviews
@@ -40,7 +33,6 @@ random_omments = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed d
     end
     # Create 6 reviews with relevant user and owner
     6.times do 
-
       newReview = Review.new
       newReview.user = newUser
       newReview.owner = newOwner
