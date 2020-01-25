@@ -3,7 +3,8 @@ class Sitter < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  belongs_to :booking
+  has_many :bookings
+  has_many :reviews
   validates :name, presence: true
   validates :location, presence: true
 end
