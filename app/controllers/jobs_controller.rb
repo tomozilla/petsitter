@@ -1,8 +1,4 @@
 class JobsController < ApplicationController
-  def index
-    @jobs = Job.all
-  end
-
   def new
     @job = Job.new
   end
@@ -14,10 +10,6 @@ class JobsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    @job = Job.find(params[:id])
   end
 
   def update
