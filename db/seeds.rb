@@ -1,7 +1,7 @@
 require 'faker'
 
 # Assign comment string for reviews
-random_omments = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
 
 20.times do
   # Create a new sitter
@@ -14,6 +14,7 @@ random_omments = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed d
   newOwner = Owner.new
   newOwner.name = Faker::Name.name
   newOwner.email = Faker::Internet.email
+  newOwner.location = Faker::Address.city + " " + Faker::Address.country
 
     # Create 3 new job with a relevant owner
     3.times. do
@@ -22,6 +23,8 @@ random_omments = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed d
       newJob.date = Faker::Date.between(from: 2.days.ago, to: Date.today)
       newJob.location = Faker::Address.city + " " + Faker::Address.country
       newJob.number_of_dogs = Random.rand(1..8)
+      newJob.description = random_text
+
         # Create 4 bookings with a relevant job
         4.times do
           newBooking = Booking.new
@@ -37,6 +40,6 @@ random_omments = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed d
       newReview.user = newUser
       newReview.owner = newOwner
       newReview.rate = Random.rand(1..5)
-      newReview.comments = random_omments
+      newReview.comments = random_text
     end
 end
