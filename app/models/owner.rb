@@ -5,6 +5,7 @@ class Owner < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :jobs
   has_many :reviews
+  has_many :bookings, through: :jobs
   validates :name, presence: true
   validates :location, presence: true
 end
