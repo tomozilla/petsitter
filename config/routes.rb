@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'owners/show'
   get 'reviews/new'
   get 'reviews/create'
   get 'sitters/index'
