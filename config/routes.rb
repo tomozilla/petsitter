@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :sitters
   devise_for :owners
   devise_for :users
