@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
+  get 'reviews/create'
   get 'sitters/index'
   get 'sitters/show'
   devise_for :sitters
