@@ -20,6 +20,7 @@ gem 'newrelic_rpm'
 gem 'faker'
 gem 'geocoder'
 gem 'pundit'
+gem 'geocoder'
 
 
 group :development do
