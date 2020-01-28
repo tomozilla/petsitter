@@ -8,9 +8,8 @@
           <%= f.input :date %>
           <%= f.input :description %>
           <%= f.input :number_of_dogs, collection: 1..10 %>
-          <%= f.button :submit %>
+          <%= f.button :submit, "Check it now", class: "btn btn-primary" %>
         <% end %>
-      <%= link_to "Check it now", job_path(1), class: "btn btn-gradient" %>
       </div>
     </div>
   </div>
