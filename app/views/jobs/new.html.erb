@@ -1,2 +1,17 @@
-<h1>Jobs#new</h1>
-<p>Find me in app/views/jobs/new.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="background-form"
+      <div class="col-12 col-lg-6">
+      <!-- This div is centered and takes 6 columns -->
+        <%= simple_form_for @job do |f| %>
+          <%= f.input :location %>
+          <%= f.input :date %>
+          <%= f.input :description %>
+          <%= f.input :number_of_dogs, collection: 1..10 %>
+          <%= f.button :submit %>
+        <% end %>
+      <%= link_to "Check it now", job_path(1), class: "btn btn-gradient" %>
+      </div>
+    </div>
+  </div>
+</div>
