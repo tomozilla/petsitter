@@ -18,8 +18,15 @@ gem 'webpacker'
 gem 'omniauth-facebook'
 gem 'newrelic_rpm'
 gem 'faker'
+<<<<<<< HEAD
 gem 'pundit'
+=======
+<<<<<<< HEAD
+>>>>>>> rebased
 gem 'geocoder'
+=======
+gem 'pundit'
+>>>>>>> add pundit
 
 group :development do
   gem 'web-console', '>= 3.3.0'

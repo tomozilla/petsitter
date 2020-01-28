@@ -8,8 +8,8 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.owner = current_owner
     authorize @job
-   if @job.save
-      redirect_to job_path(@job)
+    if @job.save
+     redirect_to job_path(@job)
     else
       render :new
     end
