@@ -18,6 +18,7 @@ gem 'webpacker'
 gem 'omniauth-facebook'
 gem 'newrelic_rpm'
 gem 'faker'
+gem 'geocoder'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
