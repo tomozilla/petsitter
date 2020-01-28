@@ -27,7 +27,8 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Owner Login", new_owner_session_path, class: "nav-link" %>
+          <%= link_to "Owner Logout", destroy_owner_session_path, class: "nav-link", method: :delete %>
         </li>
       <% end %>
     </ul>
