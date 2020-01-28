@@ -18,9 +18,19 @@ gem 'webpacker'
 gem 'omniauth-facebook'
 gem 'newrelic_rpm'
 gem 'faker'
+<<<<<<< HEAD
 gem 'geocoder'
+=======
+<<<<<<< HEAD
+>>>>>>> rebased
 gem 'pundit'
+=======
+<<<<<<< HEAD
+>>>>>>> rebased
 gem 'geocoder'
+=======
+gem 'pundit'
+>>>>>>> add pundit
 
 
 group :development do
