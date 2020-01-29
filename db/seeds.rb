@@ -14,6 +14,8 @@ puts "Sitters Destroyed"
 output_text = ""
 # Assign comment string for reviews
 random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
+location_choice = ["Meguro", "Shibuya", "Ikebukuro", "Ueno"]
+
 
 40.times do
   # Create a new sitter
@@ -21,14 +23,14 @@ random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
   newSitter.name = Faker::Name.name
   newSitter.email = Faker::Internet.email
   newSitter.password = "111111"
-  newSitter.location = Faker::Address.country
+  newSitter.location = location_choice[rand(0..3)]
   newSitter.save!
   # Create a new Owner
   newOwner = Owner.new
   newOwner.name = Faker::Name.name
   newOwner.email = Faker::Internet.email
   newOwner.password = "111111"
-  newOwner.location = Faker::Address.country
+  newOwner.location = location_choice[rand(0..3)]
   newOwner.save!
     # Create 3 new job with a relevant owner
     3.times do
@@ -37,7 +39,7 @@ random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
       rand_owner = Owner.offset(offset).first
       newJob.owner = rand_owner
       newJob.date = Faker::Date.between(from: 2.days.ago, to: Date.today)
-      newJob.location = Faker::Address.country
+      newJob.location = location_choice[rand(0..3)]
       newJob.number_of_dogs = Random.rand(1..8)
       newJob.description = random_text
       newJob.save!
@@ -73,7 +75,7 @@ newOwner = Owner.new
 newOwner.name = "Grace Jang"
 newOwner.email = "grace@plug.com"
 newOwner.password = "111111"
-newOwner.location = "Japan"
+newOwner.location = "Meguro"
 newOwner.save!
 output_text << "=====Owner====\n"  
 output_text << newOwner.email + "\n"  
@@ -84,7 +86,7 @@ output_text << "password: " + newOwner.password + "\n"
   newJob = Job.new
   newJob.owner = newOwner
   newJob.date = Faker::Date.between(from: 2.days.ago, to: Date.today)
-  newJob.location = Faker::Address.country
+  newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
   newJob.description = random_text
   newJob.save!

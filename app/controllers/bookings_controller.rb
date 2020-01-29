@@ -5,14 +5,14 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
     @job = Job.find(params[:job_id])
-    raise
     @sitter = Sitter.find(params[:sitter_id])
     @booking.job = @job
     @booking.sitter = @sitter
+    @booking.status = "pending"
     authorize @booking
-    if @booking.save
+    if @booking.save!
       redirect_to job_path(@job)
     else
       render job_path(@job)
@@ -23,6 +23,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:status)
+    params.require(:job_id).permit(:job_id)
   end
 end

@@ -1,3 +1,14 @@
+
+<%@array_sitters.each do |sitter| %>
+  <%= sitter.name %>
+  <%= sitter.email %>
+  <%= sitter.location %>
+  <%= link_to "Book", job_bookings_path(@job, sitter_id: sitter.id), class: "btn btn-primary", method: :post %>
+  <% unless @job.bookings.where(sitter_id: sitter.id).first.nil? %>
+    <%= @job.bookings.where(sitter_id: sitter.id).first.status %>
+  <% end %>
+<% end %>
+
 <div class="main-container">
 
   <div class="jobs">

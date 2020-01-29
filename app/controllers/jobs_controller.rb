@@ -24,6 +24,7 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     authorize @job
+    @array_sitters = Sitter.where(location: @job.location)
   end
 
   private
