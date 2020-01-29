@@ -1,14 +1,13 @@
-
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1559096996-73fc537f9296?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);">
-    <div class="container">
-      <div data-aos="zoom-in-right">
-      <h1>Leave your pet in good hands and <strong>go on your vacation stress-free</strong>!</h1>
-      <p>Find a great pet sitter today!</p>
-      <%= link_to "Find out now", job_path(1), class: "btn btn-gradient" %>
-      <!-- <a class="btn btn-flat" href="#">Check it out</a> -->
-      </div>
-    </div>
+<div class="home-video-wrapper">
+  <%= video_tag "dog_cover.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video" %>
+  <div class="container">
+    <h1> Leave your pet in good hands and <strong></h1>
+    <h1>go on your vacation stress-free</strong>!</h1>
+    <p>Find a great pet sitter today!</p>
+    <%= link_to "Find out now", job_path(1), class: "btn btn-gradient" %></h1>
   </div>
+</div>
+
 
   <div class="cards">
     <div class="card-product">
