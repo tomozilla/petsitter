@@ -5,6 +5,9 @@
   "addons": ["heroku-postgresql:standard-0"],
   "environments": {
     "review": {
+      "scripts": {
+        "postdeploy": "bundle exec rake db:seed"
+      },
       "addons": [
         "heroku-postgresql:hobby-dev",
         "papertrail:choklad"

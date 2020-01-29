@@ -1,13 +1,18 @@
 class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
     @job = Job.find(params[:job_id])
+    @sitter = Sitter.find(params[:sitter_id])
     @booking.job = @job
-    if @booking.save
+    @booking.sitter = @sitter
+    @booking.status = "pending"
+    authorize @booking
+    if @booking.save!
       redirect_to job_path(@job)
     else
       render job_path(@job)
@@ -18,6 +23,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:status)
+    params.require(:job_id).permit(:job_id)
   end
 end

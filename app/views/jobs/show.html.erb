@@ -1,2 +1,42 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+
+<%@array_sitters.each do |sitter| %>
+  <li>
+    <%= sitter.name %>
+    <%= sitter.email %>
+    <%= sitter.location %>
+    <%= link_to "Book", job_bookings_path(@job, sitter_id: sitter.id), class: "btn btn-primary", method: :post %>
+    <% unless @job.bookings.where(sitter_id: sitter.id).first.nil? %>
+      <%= @job.bookings.where(sitter_id: sitter.id).first.status %>
+    <% end %>
+  </li>
+<% end %>
+
+<div class="main-container">
+
+  <div class="jobs">
+
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1506993708131-b0bf29d16b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)">
+      Annie Smith
+    </div>
+
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1505475082603-e217c4a87795?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)">
+     Greg Wilson
+    </div>
+
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1535812859-6bfd2f132e78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)">
+      John Beets
+    </div>
+
+    <!-- <img id="map" src="https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/1/0/0.mvt?access_token=sk.eyJ1IjoicGFwYXR5YTkxIiwiYSI6ImNrNXdrbHh1NTFxaDAzbm1sbmpkYW11N3YifQ.4gv6Dtcxy1Lfp4f7_dDrqw"> -->
+
+  </div>
+
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
+
+  </div>
