@@ -4,7 +4,9 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.find(job_params)
+    @job = Job.new(job_params)
+    @job.owner = current_owner
+
     if @job.save
       redirect_to job_path(@job)
     else
@@ -24,6 +26,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:date, :location, :number_of_dogs)
+    params.require(:job).permit(:date, :location, :number_of_dogs, :description)
   end
 end
