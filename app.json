@@ -9,6 +9,9 @@
         "heroku-postgresql:hobby-dev",
         "papertrail:choklad"
       ]
+    },
+    "scripts": {
+      "postdeploy": "bundle exec rake db:migrate"
     }
   }
 }
