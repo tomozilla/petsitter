@@ -7,11 +7,9 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.owner = current_owner
-<<<<<<< HEAD
 
-=======
     authorize @job
->>>>>>> ddda0eeae8d32fe88ff63479e2be1365663f9844
+
     if @job.save
       redirect_to job_path(@job)
     else
