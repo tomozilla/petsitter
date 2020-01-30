@@ -41,6 +41,13 @@
 
 }
 
+ .photo {
+  height: 100%;
+  width: 120px;
+  padding: 100px 100px;
+  object-fit: cover;
+
+}
 // .card-product-infos .card-user {
 //   position: absolute;
 //   right: 16px;

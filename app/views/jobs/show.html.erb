@@ -7,7 +7,11 @@
 
       <%@array_sitters.each do |sitter| %>
         <div class="card-product">
+           <div class="photo"><%= cl_image_tag("djy31c5jszsjvd8rskup",
+              crop: :fill) %>
+            </div>
           <div class="card-product-infos">
+
             <h2><%= sitter.name %></h2>
             <h2><%= sitter.email %></h2>
             <p><%= sitter.location %></p>
@@ -15,6 +19,7 @@
             <%= link_to "Book", job_bookings_path(@job, sitter_id: sitter.id), class: "btn btn-primary", method: :post %>
             <% unless @job.bookings.where(sitter_id: sitter.id).first.nil? %>
               <%= @job.bookings.where(sitter_id: sitter.id).first.status %>
+
             <% end %>
 
           </div>
