@@ -20,6 +20,25 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.status = "confirmed"
+    authorize @booking
+    
+    @booking.save!
+    job = @booking.job
+    job.status = "confirmed"
+    job.save!
+    job.bookings.each do |booking|
+      unless booking.status == "confirmed"
+        booking.status = "declined"
+        authorize booking
+        booking.save!
+      end
+    end
+    redirect_to dashboard_path
+  end
+
   private
 
   def booking_params

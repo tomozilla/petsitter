@@ -38,7 +38,8 @@ location_choice = ["Meguro", "Shibuya", "Ikebukuro", "Ueno"]
       offset = rand(Owner.count)
       rand_owner = Owner.offset(offset).first
       newJob.owner = rand_owner
-      newJob.date = Faker::Date.between(from: 2.days.ago, to: Date.today)
+      newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
+      newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
       newJob.location = location_choice[rand(0..3)]
       newJob.number_of_dogs = Random.rand(1..8)
       newJob.description = random_text
@@ -85,7 +86,8 @@ output_text << "password: " + newOwner.password + "\n"
 2.times do
   newJob = Job.new
   newJob.owner = newOwner
-  newJob.date = Faker::Date.between(from: 2.days.ago, to: Date.today)
+  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
+  newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
   newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
   newJob.description = random_text
@@ -103,6 +105,54 @@ output_text << "password: " + newOwner.password + "\n"
     end
 end
 # Create 6 reviews with relevant user and owner
+4.times do 
+  newReview = Review.new
+  offset = rand(Sitter.count)
+  rand_sitter = Sitter.offset(offset).first
+  newReview.sitter = rand_sitter
+  newReview.owner = newOwner
+  newReview.rate = Random.rand(1..5)
+  newReview.comment = random_text
+  newReview.save!
+end
+
+# Create a sitter
+newSitter = Sitter.new
+newSitter.name = "Paula"
+newSitter.email = "paula@plug.com"
+newSitter.password = "111111"
+newSitter.location = location_choice[rand(0..3)]
+newSitter.save!
+# Create a new Owner
+newOwner = Owner.new
+newOwner.name = Faker::Name.name
+newOwner.email = Faker::Internet.email
+newOwner.password = "111111"
+newOwner.location = location_choice[rand(0..3)]
+newOwner.save!
+  # Create 3 new job with a relevant owner
+3.times do
+  newJob = Job.new
+  offset = rand(Owner.count)
+  rand_owner = Owner.offset(offset).first
+  newJob.owner = rand_owner
+  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
+  newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.location = location_choice[rand(0..3)]
+  newJob.number_of_dogs = Random.rand(1..8)
+  newJob.description = random_text
+  newJob.save!
+
+    # Create 4 bookings with a relevant job
+    4.times do
+      newBooking = Booking.new
+      newBooking.status = "pending"
+      newBooking.job = newJob
+      newBooking.sitter = newSitter
+      newBooking.save!
+    end
+end
+
 4.times do 
   newReview = Review.new
   offset = rand(Sitter.count)

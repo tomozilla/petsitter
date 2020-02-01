@@ -1,13 +1,16 @@
 class PagesController < ApplicationController
-  # before_action is a problem.
-  skip_before_action :authenticate_owner!, only: [:home]
-
   def home
     # authenticate_sitter!
   end
 
   def dashboard
-    current_owner.bookings
+    if owner_signed_in?
+      @owner_jobs = current_owner.jobs.order('created_at DESC')
+    elsif sitter_signed_in?
+      @sitter_bookings = current_sitter.bookings.order(:created_at)
+    else
+      redirect_to "/"
+    end
   end
 
   def test
