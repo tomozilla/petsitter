@@ -1,0 +1,27 @@
+.form-card {
+  overflow: hidden;
+  height: 700px;
+  margin: 50px 0;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 35px 35px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 25px;
+  background: #FEFFFE;
+}
+
+.form-card h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #403D58;
+  // margin:0;
+
+}
+
+.form-card p {
+  font-size: 18px;
+  opacity: .7;
+  color: #C9C9EE;
+}
+
+
