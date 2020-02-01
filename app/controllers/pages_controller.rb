@@ -1,7 +1,4 @@
 class PagesController < ApplicationController
-  # before_action is a problem.
- # skip_before_action :authenticate_owner!, only: [:home]
- # skip_before_action :authenticate_sitter!, only: [:home]
   def home
     # authenticate_sitter!
   end
