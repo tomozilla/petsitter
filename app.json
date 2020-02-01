@@ -9,6 +9,9 @@
       "scripts": {
         "postdeploy": "bundle exec rake db:seed"
       },
+      "env": {
+        "CLOUDINARY_URL": "cloudinary://589383342231883:GUKlibWATIwY2A6fvxtmChvjIdY@dqck6qkjd"
+      },
       "addons": [
         "heroku-postgresql:hobby-dev",
         "papertrail:choklad"
