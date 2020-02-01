@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   # controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
+
   get "/dashboard", to: "pages#dashboard"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :sitters, only: [:show] do
@@ -17,6 +18,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
   # booking is created when a sitter is booked in jobs#show
   end
-  resources :bookings, only: [:show]
+  resources :bookings, only: [:show, :update]
 
 end

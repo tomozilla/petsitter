@@ -18,13 +18,17 @@
           <%= link_to "Bookings", dashboard_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-
-          <%= link_to "Owner Logout", destroy_owner_session_path, class: "nav-link", class: "btn btn-outline-secondary", method: :delete %>
+          <%= link_to "Logout", destroy_owner_session_path, class: "nav-link", class: "btn btn-outline-secondary", method: :delete %>
+        </li>
+      <% elsif sitter_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Logout", destroy_owner_session_path, class: "nav-link", class: "btn btn-outline-secondary", method: :delete %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Owner Login", new_owner_session_path, class: "nav-link", class: "btn btn-outline-primary" %>
-
+          <%= link_to "Owner Login", new_owner_session_path, class: "nav-link", class: "btn btn-outline-primary" %>  
+          <%= link_to "Sitter Login", new_sitter_session_path, class: "nav-link", class: "btn btn-outline-primary" %>  
+        </li>  
       <% end %>
     </ul>
   </div>

@@ -1,34 +1,15 @@
-
-<div class="mb-3"><h1>My Bookings</h1></div>
-<% current_owner.jobs.each do |job| %>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col"> <h2> <%= job.description %> </h2></th>
-      <th scope="col"> <h2> <%= job.date %> </h2></th>
-      <th scope="col"> <h2> <%= job.location %> </h2></th>
-      <th scope="col"> <h2> <%= job.number_of_dogs %> </h2></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if job.status = 'confirmed' %>
-    <!-- Job status is all nil now -->
-      <% job.bookings.each do |booking| %>
-        <% if booking.status = 'confirmed' %>
-          <%= booking.status %>
-          <%= booking.sitter.name %>
-          <%= booking.sitter.location %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <% job.bookings.each do |booking| %>
-        <% if booking.status = 'pending' %>
-          <%= booking.status %>
-          <%= booking.sitter.name %>
-          <%= booking.sitter.location %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<% if owner_signed_in? %>
+<% end %>
+<% elsif sitter_signed_in? %>
+  Sitter's Dashboard
+  <% @sitter_bookings.where(status: "pending").each do |booking| %>
+    <%= render "bookings/booking_card", sitter_booking: booking %>
+    <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
+  <% end %>
+  <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
+    <%= render "bookings/booking_card", sitter_booking: booking %>
+  <% end %>
+  <% @sitter_bookings.where(status: "completed").each do |booking| %>
+    <%= render "bookings/booking_card", sitter_booking: booking %>
+  <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_owner!
+  before_action :authenticate!
   before_action :configure_permitted_parameters, if: :devise_controller?
   include Pundit
   # Pundit: white-list approach.
@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
   private
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
-  end    
+  end
+
+  def authenticate!
+    if owner_signed_in?
+      authenticate_owner!
+    elsif sitter_signed_in?
+      authenticate_sitter!
+    else
+      authenticate_owner!
+    end
+  end
   
 end
