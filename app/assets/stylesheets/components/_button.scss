@@ -30,14 +30,21 @@
   padding: 8px 24px;
   border-radius: 4px;
   font-weight: bold;
-  background: linear-gradient(#167FFB, #0F60C4);
+  background: linear-gradient(#412234, #B49FCC);
   transition: background 0.3s ease;
-  border: 1px solid #0F60C4;
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  right: 0px;
+  top: -20px;
+  width: 80px;
+  text-decoration: none;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(#147EFF, #0F67DA);
+  background: linear-gradient(#F6CACA, #CD9FCC);
   color: white;
+  text-decoration: none;
 }
 
 
