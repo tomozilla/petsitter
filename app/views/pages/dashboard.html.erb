@@ -1,4 +1,5 @@
 
+<% if owner_signed_in? %>
 <div class="mb-3"><h1>My Bookings</h1></div>
 <% @owner_jobs.each do |job| %>
 <table class="table">
@@ -48,4 +49,17 @@
     </table>
   </tbody>
 </table>
+<% end %>
+<% elsif sitter_signed_in? %>
+  Sitter's Dashboard
+  <% @sitter_bookings.where(status: "pending").each do |booking| %>
+    <%= render "bookings/booking_card", sitter_booking: booking %>
+    <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
+  <% end %>
+  <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
+    <%= render "bookings/booking_card", sitter_booking: booking %>
+  <% end %>
+  <% @sitter_bookings.where(status: "completed").each do |booking| %>
+    <%= render "bookings/booking_card", sitter_booking: booking %>
+  <% end %>
 <% end %>
