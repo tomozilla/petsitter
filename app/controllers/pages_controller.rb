@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    current_owner.bookings
+    @owner_jobs = current_owner.jobs.order('created_at DESC')
   end
 
   def test
