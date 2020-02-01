@@ -121,7 +121,7 @@ newSitter = Sitter.new
 newSitter.name = "Paula"
 newSitter.email = "paula@plug.com"
 newSitter.password = "111111"
-newSitter.location = location_choice[rand(0..3)]
+newSitter.location = "Meguro"
 newSitter.save!
 # Create a new Owner
 newOwner = Owner.new
