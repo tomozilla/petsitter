@@ -52,26 +52,29 @@
 <% elsif sitter_signed_in? %>
   Sitter's Dashboard
   <% @sitter_bookings.where(status: "pending").each do |booking| %>
-    <%= render "bookings/sitter_booking_card", sitter_booking: booking %> 
-      <div class="d-flex flex-row">
-        <div class="m-1">
-          <%= simple_form_for(booking) do |f| %>
-          <%= f.input :action, :as => :hidden, :input_html => { :value => "confirmed" } %>
-          <%= f.button :submit, 'Confirm', class: "btn btn-primary"%>
-          <% end %>
+    <% if booking.job.starts_at > Time.now%>
+      <%= render "bookings/sitter_booking_card", sitter_booking: booking %> 
+        <div class="d-flex flex-row">
+          <div class="m-1">
+            <%= simple_form_for(booking) do |f| %>
+            <%= f.input :action, :as => :hidden, :input_html => { :value => "confirmed" } %>
+            <%= f.button :submit, 'Confirm', class: "btn btn-primary"%>
+            <% end %>
+          </div>
+          <div class="m-1">
+            <%= simple_form_for(booking) do |f| %>
+            <%= f.input :action, :as => :hidden, :input_html => { :value => "declined" } %>
+            <%= f.button :submit, 'Decline', class: "btn btn-primary"%>
+            <% end %>
+          </div>
         </div>
-        <div class="m-1">
-          <%= simple_form_for(booking) do |f| %>
-          <%= f.input :action, :as => :hidden, :input_html => { :value => "declined" } %>
-          <%= f.button :submit, 'Decline', class: "btn btn-primary"%>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
   <% end %>
+
   <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
     <%= render "bookings/sitter_booking_card", sitter_booking: booking %>
   <% end %>
-  <% @sitter_bookings.where(status: "completed").each do |booking| %>
+  <% @sitter_bookings.where(status: "declined").each do |booking| %>
     <%= render "bookings/sitter_booking_card", sitter_booking: booking %>
   <% end %>
 <% end %>

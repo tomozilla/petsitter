@@ -38,8 +38,8 @@ location_choice = ["Meguro", "Shibuya", "Ikebukuro", "Ueno"]
       offset = rand(Owner.count)
       rand_owner = Owner.offset(offset).first
       newJob.owner = rand_owner
-      newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
-      newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+      newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+      newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
       newJob.location = location_choice[rand(0..3)]
       newJob.number_of_dogs = Random.rand(1..8)
       newJob.description = random_text
@@ -83,11 +83,11 @@ output_text << newOwner.email + "\n"
 output_text << "password: " + newOwner.password + "\n"
 
 # Create 3 new job with a relevant owner
-2.times do
+5.times do
   newJob = Job.new
   newJob.owner = newOwner
-  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
-  newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 2.days.from_now)
+  newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
   newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
   newJob.description = random_text
@@ -136,8 +136,8 @@ newOwner.save!
   offset = rand(Owner.count)
   rand_owner = Owner.offset(offset).first
   newJob.owner = rand_owner
-  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
-  newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
   newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
   newJob.description = random_text
