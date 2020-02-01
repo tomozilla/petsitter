@@ -131,7 +131,7 @@ newOwner.password = "111111"
 newOwner.location = location_choice[rand(0..3)]
 newOwner.save!
   # Create 3 new job with a relevant owner
-3.times do
+15.times do
   newJob = Job.new
   offset = rand(Owner.count)
   rand_owner = Owner.offset(offset).first
@@ -144,7 +144,7 @@ newOwner.save!
   newJob.save!
 
     # Create 4 bookings with a relevant job
-    4.times do
+    1.times do
       newBooking = Booking.new
       newBooking.status = "pending"
       newBooking.job = newJob
