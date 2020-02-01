@@ -1,5 +1,5 @@
 <div class="navbar sticky-top navbar-expand-sm navbar-light navbar-lewagon" style="background-color: #e3f2fd;">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag ("paw.png") %>
     <% end %>
 
@@ -12,23 +12,29 @@
     <ul class="navbar-nav mr-auto">
       <% if owner_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Home", jobs_path, class: "nav-link" %>
+          <%= link_to "Find a Sitter", new_job_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Bookings", dashboard_path, class: "nav-link" %>
+          <%= link_to "My Bookings", dashboard_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Logout", destroy_owner_session_path, class: "nav-link", class: "btn btn-outline-secondary", method: :delete %>
         </li>
       <% elsif sitter_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to "My profile", myprofile_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Bookings", dashboard_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
           <%= link_to "Logout", destroy_owner_session_path, class: "nav-link", class: "btn btn-outline-secondary", method: :delete %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Owner Login", new_owner_session_path, class: "nav-link", class: "btn btn-outline-primary" %>  
-          <%= link_to "Sitter Login", new_sitter_session_path, class: "nav-link", class: "btn btn-outline-primary" %>  
-        </li>  
+          <%= link_to "Owner Login", new_owner_session_path, class: "nav-link", class: "btn btn-outline-primary" %>
+          <%= link_to "Sitter Login", new_sitter_session_path, class: "nav-link", class: "btn btn-outline-primary" %>
+        </li>
       <% end %>
     </ul>
   </div>
