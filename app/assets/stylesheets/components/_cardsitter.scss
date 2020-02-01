@@ -1,0 +1,83 @@
+.card-sitter {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+}
+
+
+
+.card-sitter > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-sitter img {
+
+transition: transform .5s, filter 0.5s ease-in-out;
+filter: grayscale(40%);
+}
+
+
+.card-sitter:hover img {
+filter: grayscale(0);
+transform: scale(1.1);
+}
+
+
+
+.card-sitter h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.card-sitter p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  padding: 8px 0;
+}
+
+
+.card-sitter .card-sitter-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-sitter-infos .book-button {
+  position: absolute;
+  right: 0px;
+  top: -20px;
+  width: 80px;
+  padding: 8px 24px;
+  background-color: #412234;
+  border: none;
+  color: white;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+
+
+.card-sitter-infos .button-status {
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  right: 0px;
+  top: -20px;
+  width: 80px;
+}
