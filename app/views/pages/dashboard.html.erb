@@ -1,4 +1,54 @@
+
 <% if owner_signed_in? %>
+<div class="mb-3"><h1>My Bookings</h1></div>
+<% @owner_jobs.each do |job| %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"> <h2> <%= "Pet Sitting Detail: #{job.description}" %> </h2></th>
+      <th scope="col"> <h2> <%= "Starts: #{job.starts_at}" %> </h2></th>
+      <th scope="col"> <h2> <%= "Ends: #{job.ends_at}" %> </h2></th>
+      <th scope="col"> <h2> <%= "Created on: #{job.created_at}" %> </h2></th>
+      <th scope="col"> <h2> <%= "Location: #{job.location}" %> </h2></th>
+      <th scope="col"> <h2> <%= "Number of Dogs: #{job.number_of_dogs}" %> </h2></th>
+    </tr>
+  </thead>
+  <tbody>
+    <table>
+      <tr>
+        <th>Status</th>
+        <th>Name</th>
+        <th>Location</th>
+      </tr>
+      <%# unless array.include?('confirmed' || 'completed') == false %>
+      <% if job.status == 'confirmed' %>
+        <tr>
+          <% job.bookings.where(status: 'completed').order('created_at DESC').each do |booking| %>
+            <td scope="col"> <h3> <%= booking.status %> </h3></td>
+            <td scope="col"> <h3> <%= booking.sitter.name %> </h3></td>
+            <td scope="col"> <h3> <%= booking.sitter.location %> </h3></td>
+            <td scope="col"> <h3> <%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn btn-outline-primary" %> </h3></td>
+          <% end %>
+        </tr>
+        <tr>
+          <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
+            <td scope="col"> <h3> <%= booking.status %> </h3></td>
+            <td scope="col"> <h3> <%= booking.sitter.name %> </h3></td>
+            <td scope="col"> <h3> <%= booking.sitter.location %> </h3></td>
+          <% end %>
+        </tr>
+      <% else %>
+        <tr>
+          <% job.bookings.where(status: 'pending').order('created_at DESC').each do |booking| %>
+            <td scope="col"> <h3> <%= booking.status %> </h3></td>
+            <td scope="col"> <h3> <%= booking.sitter.name %> </h3></td>
+            <td scope="col"> <h3> <%= booking.sitter.location %> </h3></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </tbody>
+</table>
 <% end %>
 <% elsif sitter_signed_in? %>
   Sitter's Dashboard

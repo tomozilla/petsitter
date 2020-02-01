@@ -32,6 +32,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:date, :location, :number_of_dogs, :description)
+    params.require(:job).permit(:starts_at, :ends_at, :location, :number_of_dogs, :description, :photo)
   end
 end

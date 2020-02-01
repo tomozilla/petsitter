@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 
   def dashboard
     if owner_signed_in?
-      current_owner.bookings
+      @owner_jobs = current_owner.jobs.order('created_at DESC')
     elsif sitter_signed_in?
       @sitter_bookings = current_sitter.bookings.order(:created_at)
     else
