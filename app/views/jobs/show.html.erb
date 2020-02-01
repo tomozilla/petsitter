@@ -25,11 +25,10 @@
               <p><%= sitter.email %></p>
 
               <% unless @job.bookings.where(sitter_id: sitter.id).first.nil? %>
-                <%= @job.bookings.where(sitter_id: sitter.id).first.status %>
+               <div class="button-status"> <%= @job.bookings.where(sitter_id: sitter.id).first.status %></div>
               <% else  %>
-              <div class="book-button">
-              <%= link_to "Book", job_bookings_path(@job, sitter_id: sitter.id), class: "btn btn-primary", method: :post %>
-              </div>
+              <%= link_to "Book", job_bookings_path(@job, sitter_id: sitter.id), class: "btn-gradient", method: :post  %>
+
               <% end %>
 
 
