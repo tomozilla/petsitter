@@ -1,0 +1,10 @@
+<table class="table">
+  <thead class="thead-light">
+    <%= @sitter_profile.name %>
+    <%= @sitter_profile.location %>
+    <% @sitter_review.each do |review| %>
+      <%= review.rate %>
+      <%= review.comments %>
+    <% end %>
+  </thead>
+</table>
