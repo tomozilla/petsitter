@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   get "/dashboard", to: "pages#dashboard"
+  get "/myprofile", to: "pages#my_profile"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :sitters, only: [:show] do
+  resources :sitters, only: [:show, :update] do
   # show action is for detailed sitter view
     resources :reviews, only: [:new, :create]
   end

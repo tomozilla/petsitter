@@ -13,6 +13,13 @@ class PagesController < ApplicationController
     end
   end
 
+  def my_profile
+    if sitter_signed_in?
+      @sitter_profile = current_sitter
+      @sitter_review = current_sitter.reviews.order('created_at DESC')
+    end
+  end
+
   def test
   end
 end
