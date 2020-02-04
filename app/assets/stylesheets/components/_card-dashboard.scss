@@ -1,0 +1,37 @@
+.card-dashboard {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+}
+
+
+
+.card-dashboard > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-dashboard h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.card-dashboard p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  padding: 8px 0;
+}
+
+
+.card-dashboard .card-dashboard-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}

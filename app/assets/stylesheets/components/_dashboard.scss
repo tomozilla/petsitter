@@ -132,16 +132,22 @@ $colorBlue: rgba(84,185, 205, 1.0);
         text-transform: uppercase;
       }
 
+      .title-bookings{
+        font-weight: 700;
+        font-size: 1.0em;
+        text-transform: uppercase;
+      }
+
       ul {
         padding-left: 0px;
 
         li {
-          cursor: pointer;
+
           list-style: none;
           margin: 5px 0px;
           padding: 5px 0px;
           font-weight: 600;
-          margin-right: 30px;
+          margin-right: 10px;
           padding-left: 10px;
 
           @include border-radius(4px);
@@ -173,6 +179,8 @@ $colorBlue: rgba(84,185, 205, 1.0);
       height: 70px;
       line-height: 70px;
       padding: 20px 20px;
+      display: flex;
+      justify-content: space-around;
       // @include box-sizing(border-box);
 
       border-bottom: 1px solid #E0E0E0;
@@ -198,7 +206,7 @@ $colorBlue: rgba(84,185, 205, 1.0);
           margin: 0px 5px;
           padding: 0px 20px;
 
-          cursor: pointer;
+
           color: White;
           font-weight: 700;
 
