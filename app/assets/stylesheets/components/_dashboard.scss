@@ -1,22 +1,4 @@
 
-
-@import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
-
-@import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-
-html {
-  background-image: url(http://www.ultraimg.com/images/2UeGfhZ.jpg);
-}
-
-body {
-  padding: 0px;
-  margin: 0px;
-
-  font-family: "Open Sans";
-  font-size: 14px;
-  font-smoothing: antialiased;
-}
-
 .page {
   position: absolute;
   width: 100%;
@@ -93,13 +75,15 @@ $colorBlue: rgba(84,185, 205, 1.0);
     height: 100%;
     float: left;
 
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     background-color: rgba(227,234,235, 0.8);
 
     .searchbox {
       width: 170px;
       height: 30px;
       line-height: 30px;
-      margin: 15px;
       background-color: White;
       @include border-radius(4px);
 
@@ -123,7 +107,6 @@ $colorBlue: rgba(84,185, 205, 1.0);
 
     .menu {
       width: 100%;
-      margin: 15px;
       color: #555;
 
       .title {
@@ -147,8 +130,8 @@ $colorBlue: rgba(84,185, 205, 1.0);
           margin: 5px 0px;
           padding: 5px 0px;
           font-weight: 600;
-          margin-right: 10px;
-          padding-left: 10px;
+          margin-right: 5px;
+          padding-left: 5px;
 
           @include border-radius(4px);
           transition: 0.25s all;

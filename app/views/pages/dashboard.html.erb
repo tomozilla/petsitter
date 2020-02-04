@@ -21,85 +21,17 @@
                 <div class="title">Manage Bookings</div>
 
             </div>
+
+
             <div class="content">
                 <div class="list">
-                    <div class="title">Sitter job request</div>
+
                     <% if owner_signed_in? %>
                    <!--  <div class="mb-3"><h1>My Bookings</h1></div> -->
                     <% @owner_jobs.each do |job| %>
-                    <table class="table">
-                      <thead class="thead-light">
-                        <div class="view">
-                          <div class="viewHeader">
-
-                            <div class="functions">
-                            <div class="button active">Created on</div>
-                            <div class="button active">Number of Dogs</div>
-                            <div class="button active">Location</div>
-                            <div class="button active">End date</div>
-                            <div class="button active">Start date</div>
-                            <div class="button active">Details</div>
-                            </div>
-                            </div>
-                        <tr>
-                          <th scope="col"> <p> <%=  "#{job.description}" %> </p></th>
-                          <th scope="col"> <p> <%= " #{job.starts_at}" %> </p></th>
-                          <th scope="col"> <p> <%= " #{job.ends_at}" %> </p></th>
-                          <th scope="col"> <p> <%= " #{job.location}" %> </p></th>
-                          <th scope="col"> <p> <%= "#{job.number_of_dogs}" %> </p></th>
-                          <th scope="col"> <p> <%= " #{job.created_at}" %> </p></th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-
-
-                        <div class="title">Booking requests status</div>
-
-
-                        <div class="card-dashboard">
-
-                           <div class="card-dashboard-infos">
-
-                          <% if job.status == 'confirmed' %>
-                              <% job.bookings.where(status: 'completed').order('created_at DESC').each do |booking| %>
-
-                            <h2><%= booking.status %></h2>
-                            <h2><%= booking.sitter.name %></h2>
-                            <p><%= booking.sitter.location %></p>
-                            <p><%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn-gradient book-button" %></p>
-
-                          <% end %>
-
-                          <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
-                              <h2> <%= booking.status %> </h2>
-                              <h2> <%= booking.sitter.name %> </h2>
-                              <p> <%= booking.sitter.location %> </p>
-                              <% end %>
-
-                        <% else %>
-                          <% job.bookings.where(status: 'pending').order('created_at DESC').each do |booking| %>
-                            <h2> <%= booking.status %> </p>
-                            <h2> <%= booking.sitter.name %> </p>
-                            <p> <%= booking.sitter.location %> </p>
-                              <% end %>
-
-                          </div>
-                          </div>
-
-
-
-
-
-                          </div>
-                        </div>
-                          <% end %>
-
-                      </tbody>
-
-                    </table>
+                      <%= render "shared/job", job: job %>
                     <% end %>
-                        </div> -->
+                        </div>
                           <%# unless array.include?('confirmed' || 'completed') == false %>
 
                     <% elsif sitter_signed_in? %>

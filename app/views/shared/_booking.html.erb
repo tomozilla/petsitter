@@ -1,0 +1,13 @@
+
+<div class="booking-card">
+
+  <div class="booking-card-infos">
+
+    <h2><%= booking.status %></h2>
+    <h2><%= booking.sitter.name %></h2>
+    <p><%= booking.sitter.location %></p>
+    <% if booking.status == 'completed' %>
+    <p><%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn-gradient book-button" %></p>
+    <% end %>
+  </div>
+</div>
