@@ -38,8 +38,8 @@ location_choice = ["Meguro", "Shibuya", "Ikebukuro", "Ueno"]
       offset = rand(Owner.count)
       rand_owner = Owner.offset(offset).first
       newJob.owner = rand_owner
-      newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
-      newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+      newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+      newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
       newJob.location = location_choice[rand(0..3)]
       newJob.number_of_dogs = Random.rand(1..8)
       newJob.description = random_text
@@ -83,11 +83,11 @@ output_text << newOwner.email + "\n"
 output_text << "password: " + newOwner.password + "\n"
 
 # Create 3 new job with a relevant owner
-2.times do
+5.times do
   newJob = Job.new
   newJob.owner = newOwner
-  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
-  newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 2.days.from_now)
+  newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
   newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
   newJob.description = random_text
@@ -121,7 +121,7 @@ newSitter = Sitter.new
 newSitter.name = "Paula"
 newSitter.email = "paula@plug.com"
 newSitter.password = "111111"
-newSitter.location = location_choice[rand(0..3)]
+newSitter.location = "Meguro"
 newSitter.save!
 # Create a new Owner
 newOwner = Owner.new
@@ -131,20 +131,20 @@ newOwner.password = "111111"
 newOwner.location = location_choice[rand(0..3)]
 newOwner.save!
   # Create 3 new job with a relevant owner
-3.times do
+15.times do
   newJob = Job.new
   offset = rand(Owner.count)
   rand_owner = Owner.offset(offset).first
   newJob.owner = rand_owner
-  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 5.days.ago)
-  newJob.ends_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 3.days.from_now)
+  newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
   newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
   newJob.description = random_text
   newJob.save!
 
     # Create 4 bookings with a relevant job
-    4.times do
+    1.times do
       newBooking = Booking.new
       newBooking.status = "pending"
       newBooking.job = newJob
