@@ -78,9 +78,8 @@
                       </tbody>
                     </table>
                     <% end %>
-                        </div> -->
-                          <%# unless array.include?('confirmed' || 'completed') == false %>
-
+                        </div> 
+ 
                   <% elsif sitter_signed_in? %>
                     Sitter's Dashboard
                     <% @sitter_bookings.where(status: "pending").each do |booking| %>
@@ -114,12 +113,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
->>>>>>> added dashboard frontend
