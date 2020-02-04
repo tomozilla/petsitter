@@ -3,10 +3,10 @@ class SitterPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-
-    def update?
-      true
-      # record.sitter == sitter
-    end
   end
-end
+
+  def update?
+    true
+    # record.sitter == sitter
+  end
+end「「
