@@ -7,4 +7,5 @@ class Sitter < ApplicationRecord
   has_many :reviews
   validates :name, presence: true
   validates :location, presence: true
+  has_one_attached :photo
 end

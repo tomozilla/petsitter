@@ -1,4 +1,6 @@
+<div class="page">
 
+<<<<<<< HEAD
 
 
 <% if owner_signed_in? %>
@@ -65,3 +67,74 @@
     <%= render "bookings/booking_card", sitter_booking: booking %>
   <% end %>
 <% end %>
+=======
+<div class="page">
+    <div class="main">
+        <div class="nav">
+            <div class="searchbox">
+                <div><i class="fa fa-search"></i><input type="search" placeholder="Search" /></div>
+            </div>
+            <div class="menu">
+                <div class="title">Navigation</div>
+                <ul>
+                    <li> <i class="fa fa-home"></i>Home</li>
+                    <li><i class="fa fa-signal"></i>Activity</li>
+                    <li class="active"> <i class="fa fa-tasks"></i>Manage Bookings</li>
+                    <li> <i class="fa fa-envelope"></i>Messages</li>
+                </ul>
+            </div>
+        </div>
+        <div class="view">
+            <div class="viewHeader">
+                <div class="title">Manage Bookings</div>
+            </div>
+
+
+            <div class="content">
+                <div class="list">
+
+                    <% if owner_signed_in? %>
+                   <!--  <div class="mb-3"><h1>My Bookings</h1></div> -->
+                    <% @owner_jobs.each do |job| %>
+                      <%= render "shared/job", job: job %>
+                    <% end %>
+                        </div>
+                          <%# unless array.include?('confirmed' || 'completed') == false %>
+
+                    <% elsif sitter_signed_in? %>
+                      Sitter's Dashboard
+                      <% @sitter_bookings.where(status: "pending").each do |booking| %>
+                        <%= render "bookings/booking_card", sitter_booking: booking %>
+                        <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
+                      <% end %>
+                      <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
+                        <%= render "bookings/booking_card", sitter_booking: booking %>
+                      <% end %>
+                      <% @sitter_bookings.where(status: "completed").each do |booking| %>
+                        <%= render "bookings/booking_card", sitter_booking: booking %>
+                      <% end %>
+                    <% end %>
+
+
+
+                    <!-- <ul>
+                        <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
+                            <div class="info">
+                                <div class="button green">In progress</div><span>Complete by 25/04/2014</span>
+                            </div>
+                        </li>
+                        <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
+                            <div class="info">
+                                <div class="button">Pending</div><span>Complete by 10/04/2014</span>
+                            </div>
+                        </li>
+                        <li><i class="fa fa-square-o"></i><span>Find a front end developer</span>
+                            <div class="info"></div>
+                        </li>
+                    </ul>
+               -->
+             </div>
+        </div>
+    </div>
+</div>
+>>>>>>> 3c52f6f79159352b3c60f16da6e09ed8034d095d

@@ -21,11 +21,22 @@ class BookingsController < ApplicationController
   end
 
   def update
+    updated_status = params["booking"]["action"]
     @booking = Booking.find(params[:id])
-    @booking.status = "confirmed"
+    @booking.status = updated_status
     authorize @booking
-    
     @booking.save!
+    update_job_and_bookings if updated_status == "confirmed"
+    redirect_to dashboard_path
+  end
+
+  private
+
+  def booking_params
+    params.require(:job_id).permit(:job_id)
+  end
+
+  def update_job_and_bookings
     job = @booking.job
     job.status = "confirmed"
     job.save!
@@ -35,13 +46,6 @@ class BookingsController < ApplicationController
         authorize booking
         booking.save!
       end
-    end
-    redirect_to dashboard_path
-  end
-
-  private
-
-  def booking_params
-    params.require(:job_id).permit(:job_id)
+    end 
   end
 end

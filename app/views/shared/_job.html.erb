@@ -1,0 +1,57 @@
+<div class="job">
+  <div class="title">Sitter job request</div>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+
+
+          <th><div class="button active">Details</div></th>
+          <th><div class="button active">Start date</div></th>
+          <th><div class="button active">End date</div></th>
+          <th><div class="button active">Location</div></th>
+          <th><div class="button active">Number of Dogs</div></th>
+
+          <th><div class="button active">Created on</div></th>
+       </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td scope="col"> <p> <%=  "#{job.description}" %> </p></td>
+        <td scope="col"> <p> <%= " #{job.starts_at}" %> </p></td>
+        <td scope="col"> <p> <%= " #{job.ends_at}" %> </p></td>
+        <td scope="col"> <p> <%= " #{job.location}" %> </p></td>
+        <td scope="col"> <p> <%= "#{job.number_of_dogs}" %> </p></td>
+        <td scope="col"> <p> <%= " #{job.created_at}" %> </p></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <div class="title">Booking requests status</div>
+
+  <div class="row">
+      <% if job.status == 'confirmed' %>
+        <% job.bookings.where(status: 'completed').order('created_at DESC').each do |booking| %>
+        <div class="col-3">
+          <%= render "shared/booking", booking: booking %>
+        </div>
+        <% end %>
+
+        <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
+        <div class="col-3">
+          <%= render "shared/booking", booking: booking %>
+        </div>
+        <% end %>
+
+
+      <% else %>
+        <% job.bookings.where(status: 'pending').order('created_at DESC').each do |booking| %>
+        <div class="col-3">
+          <%= render "shared/booking", booking: booking %>
+        </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+

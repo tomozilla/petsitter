@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 style='margin-top: 40px; margin-bottom: 15px;'><%="#{@sitter_profile.name}'s profile" %></h1>
+        <%= cl_image_tag @sitter_profile.photo.key, height: 300, width: 400, crop: :fill %>
+        <%= simple_form_for @sitter_profile do |f| %>
+          <%= f.input :photo, as: :file %>
+         <%# f.input :photo_cache, as: :hidden %>
+          <%= f.button :submit, class: 'btn btn-flat' %>
+        <% end %>
+        <ul><%= "Name: #{@sitter_profile.name}" %></ul>
+        <ul><%= "Location: #{@sitter_profile.location}" %></ul>
+        <ul><%= "Average rating: #{@sitter_review.sum(:rate).to_f / @sitter_review.count}" %></ul>
+        <% @sitter_review.each do |review| %>
+          <ul><%= review.comment %></ul>
+          <ul><%= "by #{Owner.find(review.owner_id).name}" %></ul>
+        <% end %>
+      <p style='margin-top: 16px;'><%= link_to "Check my bookings", dashboard_path %></p>
+    </div>
+  </div>
+</div>
