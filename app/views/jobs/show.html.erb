@@ -7,7 +7,13 @@
 
       <%@array_sitters.each do |sitter| %>
         <div class="card-sitter">
-          <img src="https://images.unsplash.com/photo-1535722339661-7f22185bc7ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80">
+          <% if sitter.photo.attached? == true %>
+            <% photo_url = cl_image_path sitter.photo.key, width: 400, height: 500, crop: :fill %>
+            <img src= "<%= photo_url %>">
+          <% else %>
+            <% photo_url = "https://images.unsplash.com/photo-1535722339661-7f22185bc7ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" %>
+            <img src= "<%= photo_url %>">
+          <% end %>
            <div class="card-sitter-infos">
 
             <div>
