@@ -102,10 +102,10 @@
                           <%# unless array.include?('confirmed' || 'completed') == false %>
 
                     <% elsif sitter_signed_in? %>
-                      Sitter's Dashboard
+
                       <% @sitter_bookings.where(status: "pending").each do |booking| %>
                         <%= render "bookings/booking_card", sitter_booking: booking %>
-                        <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
+                        <%= link_to "Confirm", booking_path(booking), class: "btn-gradient", method: :patch %>
                       <% end %>
                       <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
                         <%= render "bookings/booking_card", sitter_booking: booking %>
