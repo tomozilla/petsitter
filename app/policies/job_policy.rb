@@ -10,13 +10,11 @@ class JobPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
-    # - record: the restaurant passed to the `authorize` method in controller
-    # - user:   the `current_user` signed in with Devise.
+    record.owner == owner
   end
 
   def destroy?
-    record.user == user
+    record.owner == owner
   end
 
 
