@@ -17,11 +17,18 @@
            <div class="card-sitter-infos">
 
             <div>
-              <i class="fas fa-star" ></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
+              <% sitter_rating = sitter.reviews.sum(:rate).to_f / sitter.reviews.count %>
+              <% if sitter_rating.nan? %>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              <% else %>
+                <% sitter_rating.to_i.times do  %>
+                <span class="fas fa-star"></span>
+                <% end %>
+              <% end %>
               <h2><%= sitter.name %></h2>
               <p><%= sitter.location %></p>
 
