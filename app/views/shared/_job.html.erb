@@ -3,18 +3,14 @@
   <table class="table">
     <thead class="thead-light">
       <tr>
-
-
           <th><div class="button active">Details</div></th>
           <th><div class="button active">Start date</div></th>
           <th><div class="button active">End date</div></th>
           <th><div class="button active">Location</div></th>
           <th><div class="button active">Number of Dogs</div></th>
-
           <th><div class="button active">Created on</div></th>
        </tr>
     </thead>
-
     <tbody>
       <tr>
         <td scope="col"> <p> <%=  "#{job.description}" %> </p></td>
@@ -25,33 +21,26 @@
         <td scope="col"> <p> <%= " #{job.created_at}" %> </p></td>
       </tr>
     </tbody>
-
   </table>
 
   <div class="title">Booking requests status</div>
-
   <div class="row">
-      <% if job.status == 'confirmed' %>
-        <% job.bookings.where(status: 'completed').order('created_at DESC').each do |booking| %>
-        <div class="col-3">
-          <%= render "shared/booking", booking: booking %>
-        </div>
-        <% end %>
-
-        <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
-        <div class="col-3">
-          <%= render "shared/booking", booking: booking %>
-        </div>
-        <% end %>
-
-
-      <% else %>
-        <% job.bookings.where(status: 'pending').order('created_at DESC').each do |booking| %>
-        <div class="col-3">
-          <%= render "shared/booking", booking: booking %>
-        </div>
-        <% end %>
+    <% if job.ends_at < Time.now %>
+      <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
+        <div class="col-3"><%= render "shared/booking", booking: booking %></div>
+        <td scope="col"> <h3> <%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn btn-outline-primary" %> </h3></td>
       <% end %>
+    <% else %>
+      <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
+        <div class="col-3"><%= render "shared/booking", booking: booking %></div>
+      <% end %>       
+      <% job.bookings.where( status: 'pending').order('created_at DESC').each do |booking| %>
+        <div class="col-3"><%= render "bookings/owner_booking_card", owner_booking: booking %></div>
+      <% end %>
+      <% job.bookings.where( status: 'declined').order('created_at DESC').each do |booking| %>
+        <div class="col-3"><%= render "bookings/owner_booking_card", sitter_booking: booking %></div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 

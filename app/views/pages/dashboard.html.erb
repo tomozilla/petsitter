@@ -1,6 +1,4 @@
 <div class="page">
-
-<div class="page">
     <div class="main">
         <div class="nav">
             <div class="searchbox">
@@ -20,51 +18,18 @@
             <div class="viewHeader">
                 <div class="title">Manage Bookings</div>
             </div>
-
-
             <div class="content">
                 <div class="list">
-
-                    <% if owner_signed_in? %>
-                   <!--  <div class="mb-3"><h1>My Bookings</h1></div> -->
+                  <% if owner_signed_in? %>
                     <% @owner_jobs.each do |job| %>
                       <%= render "shared/job", job: job %>
                     <% end %>
-                        </div>
-                          <%# unless array.include?('confirmed' || 'completed') == false %>
-
-                    <% elsif sitter_signed_in? %>
-                      Sitter's Dashboard
-                      <% @sitter_bookings.where(status: "pending").each do |booking| %>
-                        <%= render "bookings/booking_card", sitter_booking: booking %>
-                        <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
-                      <% end %>
-                      <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
-                        <%= render "bookings/booking_card", sitter_booking: booking %>
-                      <% end %>
-                      <% @sitter_bookings.where(status: "completed").each do |booking| %>
-                        <%= render "bookings/booking_card", sitter_booking: booking %>
-                      <% end %>
-                    <% end %>
-
-
-
-                    <!-- <ul>
-                        <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
-                            <div class="info">
-                                <div class="button green">In progress</div><span>Complete by 25/04/2014</span>
-                            </div>
-                        </li>
-                        <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
-                            <div class="info">
-                                <div class="button">Pending</div><span>Complete by 10/04/2014</span>
-                            </div>
-                        </li>
-                        <li><i class="fa fa-square-o"></i><span>Find a front end developer</span>
-                            <div class="info"></div>
-                        </li>
-                    </ul>
-               -->
+                </div>
+                <% elsif sitter_signed_in? %>
+                  <% @sitter_bookings.where(status: "pending").each do |booking| %>
+                    <%= render "shared/sitters_booking", booking: booking %>
+                  <% end %>
+                <% end %>
              </div>
         </div>
     </div>

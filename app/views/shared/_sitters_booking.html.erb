@@ -1,0 +1,24 @@
+<% if booking.job.starts_at > Time.now%>
+  <%= render "shared/sitter_booking_card", sitter_booking: booking %> 
+    <div class="d-flex flex-row">
+      <div class="m-1">
+        <%= simple_form_for(booking) do |f| %>
+        <%= f.input :action, :as => :hidden, :input_html => { :value => "confirmed" } %>
+        <%= f.button :submit, 'Confirm', class: "btn btn-primary"%>
+        <% end %>
+      </div>
+      <div class="m-1">
+        <%= simple_form_for(booking) do |f| %>
+        <%= f.input :action, :as => :hidden, :input_html => { :value => "declined" } %>
+        <%= f.button :submit, 'Decline', class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+<% else %>
+  <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
+    <%= render "shared/sitter_booking_card", sitter_booking: booking %>
+  <% end %>
+  <% @sitter_bookings.where(status: "declined").each do |booking| %>
+    <%= render "shared/sitter_booking_card", sitter_booking: booking %>
+  <% end %>
+<% end %>
