@@ -1,74 +1,4 @@
 <div class="page">
-
-<<<<<<< HEAD
-
-
-<% if owner_signed_in? %>
-<div class="mb-3"><h1>My Bookings</h1></div>
-<% @owner_jobs.each do |job| %>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col"> <h2> <%= "Pet Sitting Detail: #{job.description}" %> </h2></th>
-      <th scope="col"> <h2> <%= "Starts: #{job.starts_at}" %> </h2></th>
-      <th scope="col"> <h2> <%= "Ends: #{job.ends_at}" %> </h2></th>
-      <th scope="col"> <h2> <%= "Created on: #{job.created_at}" %> </h2></th>
-      <th scope="col"> <h2> <%= "Location: #{job.location}" %> </h2></th>
-      <th scope="col"> <h2> <%= "Number of Dogs: #{job.number_of_dogs}" %> </h2></th>
-    </tr>
-  </thead>
-  <tbody>
-    <table>
-      <tr>
-        <th>Status</th>
-        <th>Name</th>
-        <th>Location</th>
-      </tr>
-      <%# unless array.include?('confirmed' || 'completed') == false %>
-      <% if job.status == 'confirmed' %>
-        <tr>
-          <% job.bookings.where(status: 'completed').order('created_at DESC').each do |booking| %>
-            <td scope="col"> <h3> <%= booking.status %> </h3></td>
-            <td scope="col"> <h3> <%= booking.sitter.name %> </h3></td>
-            <td scope="col"> <h3> <%= booking.sitter.location %> </h3></td>
-            <td scope="col"> <h3> <%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn btn-outline-primary" %> </h3></td>
-          <% end %>
-        </tr>
-        <tr>
-          <% job.bookings.where(status: 'confirmed').order('created_at DESC').each do |booking| %>
-            <td scope="col"> <h3> <%= booking.status %> </h3></td>
-            <td scope="col"> <h3> <%= booking.sitter.name %> </h3></td>
-            <td scope="col"> <h3> <%= booking.sitter.location %> </h3></td>
-          <% end %>
-        </tr>
-      <% else %>
-        <tr>
-          <% job.bookings.where(status: 'pending').order('created_at DESC').each do |booking| %>
-            <td scope="col"> <h3> <%= booking.status %> </h3></td>
-            <td scope="col"> <h3> <%= booking.sitter.name %> </h3></td>
-            <td scope="col"> <h3> <%= booking.sitter.location %> </h3></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
-  </tbody>
-</table>
-<% end %>
-<% elsif sitter_signed_in? %>
-  Sitter's Dashboard
-  <% @sitter_bookings.where(status: "pending").each do |booking| %>
-    <%= render "bookings/booking_card", sitter_booking: booking %>
-    <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
-  <% end %>
-  <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
-    <%= render "bookings/booking_card", sitter_booking: booking %>
-  <% end %>
-  <% @sitter_bookings.where(status: "completed").each do |booking| %>
-    <%= render "bookings/booking_card", sitter_booking: booking %>
-  <% end %>
-<% end %>
-=======
-<div class="page">
     <div class="main">
         <div class="nav">
             <div class="searchbox">
@@ -88,53 +18,19 @@
             <div class="viewHeader">
                 <div class="title">Manage Bookings</div>
             </div>
-
-
             <div class="content">
                 <div class="list">
-
-                    <% if owner_signed_in? %>
-                   <!--  <div class="mb-3"><h1>My Bookings</h1></div> -->
+                  <% if owner_signed_in? %>
                     <% @owner_jobs.each do |job| %>
                       <%= render "shared/job", job: job %>
                     <% end %>
-                        </div>
-                          <%# unless array.include?('confirmed' || 'completed') == false %>
-
-                    <% elsif sitter_signed_in? %>
-                      Sitter's Dashboard
-                      <% @sitter_bookings.where(status: "pending").each do |booking| %>
-                        <%= render "bookings/booking_card", sitter_booking: booking %>
-                        <%= link_to "Confirm", booking_path(booking), class: "btn btn-primary", method: :patch %>
-                      <% end %>
-                      <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
-                        <%= render "bookings/booking_card", sitter_booking: booking %>
-                      <% end %>
-                      <% @sitter_bookings.where(status: "completed").each do |booking| %>
-                        <%= render "bookings/booking_card", sitter_booking: booking %>
-                      <% end %>
-                    <% end %>
-
-
-
-                    <!-- <ul>
-                        <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
-                            <div class="info">
-                                <div class="button green">In progress</div><span>Complete by 25/04/2014</span>
-                            </div>
-                        </li>
-                        <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
-                            <div class="info">
-                                <div class="button">Pending</div><span>Complete by 10/04/2014</span>
-                            </div>
-                        </li>
-                        <li><i class="fa fa-square-o"></i><span>Find a front end developer</span>
-                            <div class="info"></div>
-                        </li>
-                    </ul>
-               -->
+                </div>
+                <% elsif sitter_signed_in? %>
+                  <% @sitter_bookings.each do |booking| %>
+                    <%= render "shared/sitters_booking", booking: booking %>
+                  <% end %>
+                <% end %>
              </div>
         </div>
     </div>
 </div>
->>>>>>> 3c52f6f79159352b3c60f16da6e09ed8034d095d
