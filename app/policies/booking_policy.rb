@@ -6,10 +6,10 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.job.owner == user
   end
 
   def update?
-    record.sitter == sitter
+    record.sitter == user
   end
 end

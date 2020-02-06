@@ -1,11 +1,15 @@
 
 <div class="booking-card">
   <div class="booking-card-infos">
-    <h2><%= booking.status %></h2>
+    <% if (booking.job.ends_at < Time.now) && (booking.status == "confirmed") %>
+      <h2>Completed</h2>
+    <% else %>
+      <h2><%= booking.status %></h2>
+    <% end %>
     <h2><%= booking.sitter.name %></h2>
     <p><%= booking.sitter.location %></p>
-    <% if booking.status == 'completed' %>
-    <p><%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn-gradient book-button" %></p>
+    <% if (booking.job.ends_at < Time.now) && (booking.status == "confirmed") %>
+      <p><%= link_to "Write a review", new_sitter_review_path(booking.sitter), class: "btn-gradient book-button" %></p>
     <% end %>
   </div>
 </div>

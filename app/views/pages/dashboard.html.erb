@@ -26,7 +26,7 @@
                     <% end %>
                 </div>
                 <% elsif sitter_signed_in? %>
-                  <% @sitter_bookings.where(status: "pending").each do |booking| %>
+                  <% @sitter_bookings.each do |booking| %>
                     <%= render "shared/sitters_booking", booking: booking %>
                   <% end %>
                 <% end %>
