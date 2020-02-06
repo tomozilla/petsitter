@@ -1,6 +1,6 @@
 .booking-card {
   overflow: hidden;
-  background: white;
+  background: gray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 10px;
 
@@ -10,16 +10,24 @@
     object-fit: cover;
   }
 
+  h1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 10px;
+    padding-top: 8px;
+
+  }
+
   h2 {
     font-size: 16px;
     font-weight: bold;
-    margin: 0;
+    margin: 10px 10px;
     padding-top: 8px;
   }
   p {
     font-size: 12px;
-    opacity: .7;
-    margin: 0;
+    opacity: .8;
+    margin: 20px 20px;
     padding: 8px 0;
   }
   .card-dashboard-infos {

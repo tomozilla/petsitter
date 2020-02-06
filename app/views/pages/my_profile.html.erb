@@ -5,7 +5,7 @@
         <h1><%="#{@sitter_profile.name}'s profile" %></h1>
           <% if @sitter_profile.photo.attached? %>
             <%= cl_image_tag @sitter_profile.photo.key, height: 300, width: 400, crop: :fill %>
-          <% end>
+          <% end %>
           <%= simple_form_for @sitter_profile do |f| %>
             <%= f.input :photo, as: :file %>
            <%# f.input :photo_cache, as: :hidden %>
