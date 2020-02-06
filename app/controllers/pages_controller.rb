@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate!, only: :home 
   def home
-    # authenticate_sitter!
   end
 
   def dashboard

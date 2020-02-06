@@ -1,0 +1,19 @@
+<% unless (booking.job.starts_at < Time.now) && (booking.status == "pending") %>
+  <%= render "shared/sitter_booking_card", sitter_booking: booking %> 
+<% end %>
+<% if (booking.job.starts_at > Time.now) && (booking.status == "pending") %>
+    <div class="d-flex flex-row">
+      <div class="m-1">
+        <%= simple_form_for(booking) do |f| %>
+        <%= f.input :action, :as => :hidden, :input_html => { :value => "confirmed" } %>
+        <%= f.button :submit, 'Confirm', class: "btn btn-primary"%>
+        <% end %>
+      </div>
+      <div class="m-1">
+        <%= simple_form_for(booking) do |f| %>
+        <%= f.input :action, :as => :hidden, :input_html => { :value => "declined" } %>
+        <%= f.button :submit, 'Decline', class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+<% end %>
