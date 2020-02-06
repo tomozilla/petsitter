@@ -1,5 +1,7 @@
-<% if booking.job.starts_at > Time.now%>
+<% unless (booking.job.starts_at < Time.now) && (booking.status == "pending") %>
   <%= render "shared/sitter_booking_card", sitter_booking: booking %> 
+<% end %>
+<% if (booking.job.starts_at > Time.now) && (booking.status == "pending") %>
     <div class="d-flex flex-row">
       <div class="m-1">
         <%= simple_form_for(booking) do |f| %>
@@ -14,11 +16,4 @@
         <% end %>
       </div>
     </div>
-<% else %>
-  <% @sitter_bookings.where(status: "confirmed").each do |booking| %>
-    <%= render "shared/sitter_booking_card", sitter_booking: booking %>
-  <% end %>
-  <% @sitter_bookings.where(status: "declined").each do |booking| %>
-    <%= render "shared/sitter_booking_card", sitter_booking: booking %>
-  <% end %>
 <% end %>

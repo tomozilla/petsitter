@@ -8,11 +8,9 @@
 
         <%= simple_form_for @job do |f| %>
           <%= f.input :location %>
-
           <%= f.input :description %>
           <%= f.input :photo, as: :file %>
           <%= f.input :number_of_dogs, collection: 1..10 %>
-
           <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker"} %>
           <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker"} %>
          <%= f.button :submit, "Search now", class: "btn btn-primary" %>

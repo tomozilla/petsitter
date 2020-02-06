@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
+  # You must signed in.
   before_action :authenticate!
   before_action :configure_permitted_parameters, if: :devise_controller?
   include Pundit
+  :pundit_user
   # Pundit: white-list approach.
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
@@ -25,6 +27,10 @@ class ApplicationController < ActionController::Base
     else
       authenticate_owner!
     end
+  end
+
+  def pundit_user
+    current_owner || current_sitter
   end
   
 end
