@@ -13,9 +13,9 @@ puts "Sitters Destroyed"
 
 output_text = ""
 # Assign comment string for reviews
-random_text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
+random_text = "I am going to travel overseas, and I need to find a pet sitter to take care of my dogs"
 location_choice = ["Meguro", "Shibuya", "Ikebukuro", "Ueno"]
-
+booking_status_choice = ['pending', 'confirmed', 'declined']
 
 40.times do
   # Create a new sitter
@@ -48,7 +48,7 @@ location_choice = ["Meguro", "Shibuya", "Ikebukuro", "Ueno"]
         # Create 4 bookings with a relevant job
         4.times do
           newBooking = Booking.new
-          newBooking.status = "pending"
+          newBooking.status = booking_status_choice[rand(0..2)]
           newBooking.job = newJob
           offset = rand(Sitter.count)
           rand_sitter = Sitter.offset(offset).first
@@ -86,7 +86,7 @@ output_text << "password: " + newOwner.password + "\n"
 5.times do
   newJob = Job.new
   newJob.owner = newOwner
-  newJob.starts_at = Faker::Date.between(from: 3.days.ago, to: 2.days.from_now)
+  newJob.starts_at = Faker::Date.between(from: 2.days.from_now, to: 3.days.from_now)
   newJob.ends_at = Faker::Date.between(from: 4.days.from_now, to: 8.days.from_now)
   newJob.location = location_choice[rand(0..3)]
   newJob.number_of_dogs = Random.rand(1..8)
@@ -94,9 +94,19 @@ output_text << "password: " + newOwner.password + "\n"
   newJob.save!
 
     # Create 4 bookings with a relevant job
-    3.times do
+    1.times do
       newBooking = Booking.new
-      newBooking.status = "pending"
+      newBooking.status = "confirmed"
+      newBooking.job = newJob
+      offset = rand(Sitter.count)
+      rand_sitter = Sitter.offset(offset).first
+      newBooking.sitter = rand_sitter
+      newBooking.save!
+    end
+    # Create 4 bookings with a relevant job
+    2.times do
+      newBooking = Booking.new
+      newBooking.status = "declined"
       newBooking.job = newJob
       offset = rand(Sitter.count)
       rand_sitter = Sitter.offset(offset).first
@@ -104,17 +114,40 @@ output_text << "password: " + newOwner.password + "\n"
       newBooking.save!
     end
 end
-# Create 6 reviews with relevant user and owner
-4.times do 
-  newReview = Review.new
-  offset = rand(Sitter.count)
-  rand_sitter = Sitter.offset(offset).first
-  newReview.sitter = rand_sitter
-  newReview.owner = newOwner
-  newReview.rate = Random.rand(1..5)
-  newReview.comment = random_text
-  newReview.save!
+
+# Create 3 new job with a relevant owner
+5.times do
+  newJob = Job.new
+  newJob.owner = newOwner
+  newJob.starts_at = Faker::Date.between(from: 10.days.ago, to: 9.days.ago)
+  newJob.ends_at = Faker::Date.between(from: 6.days.ago, to: 2.days.ago)
+  newJob.location = location_choice[rand(0..3)]
+  newJob.number_of_dogs = Random.rand(1..8)
+  newJob.description = random_text
+  newJob.save!
+
+    # Create 4 bookings with a relevant job
+    1.times do
+      newBooking = Booking.new
+      newBooking.status = "confirmed"
+      newBooking.job = newJob
+      offset = rand(Sitter.count)
+      rand_sitter = Sitter.offset(offset).first
+      newBooking.sitter = rand_sitter
+      newBooking.save!
+    end
+    # Create 4 bookings with a relevant job
+    2.times do
+      newBooking = Booking.new
+      newBooking.status = "declined"
+      newBooking.job = newJob
+      offset = rand(Sitter.count)
+      rand_sitter = Sitter.offset(offset).first
+      newBooking.sitter = rand_sitter
+      newBooking.save!
+    end
 end
+
 
 # Create a sitter
 newSitter = Sitter.new
@@ -146,7 +179,7 @@ newOwner.save!
     # Create 4 bookings with a relevant job
     1.times do
       newBooking = Booking.new
-      newBooking.status = "pending"
+      newBooking.status = booking_status_choice[rand(0..2)]
       newBooking.job = newJob
       newBooking.sitter = newSitter
       newBooking.save!

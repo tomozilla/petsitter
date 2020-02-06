@@ -6,7 +6,6 @@ class SitterPolicy < ApplicationPolicy
   end
 
   def update?
-    true
-    # record.sitter == sitter
+    record.sitter == sitter
   end
-end「「
+end

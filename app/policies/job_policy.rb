@@ -4,23 +4,25 @@ class JobPolicy < ApplicationPolicy
       scope.all
     end
   end
+ 
+  def new?
+    true
+  end
 
   def create?
     true
   end
+  
+  def show?
+    record.owner == user
+  end
 
   def update?
-    record.user == user
-    # - record: the restaurant passed to the `authorize` method in controller
-    # - user:   the `current_user` signed in with Devise.
+    record.owner == user
   end
 
   def destroy?
-    record.user == user
+    record.owner == user
   end
 
-
-  def show?
-    true
-  end
 end
