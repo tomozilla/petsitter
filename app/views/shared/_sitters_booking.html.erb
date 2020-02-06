@@ -1,7 +1,12 @@
 <% unless (booking.job.starts_at < Time.now) && (booking.status == "pending") %>
-  <%= render "shared/sitter_booking_card", sitter_booking: booking %> 
+  <%= render "shared/sitter_booking_card", sitter_booking: booking %>
 <% end %>
 <% if (booking.job.starts_at > Time.now) && (booking.status == "pending") %>
+  <div>
+  <% if Job.find(booking.job_id).photo.attached? %>
+    <%= cl_image_tag Job.find(booking.job_id).photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+  </div>
     <div class="d-flex flex-row">
       <div class="m-1">
         <%= simple_form_for(booking) do |f| %>
