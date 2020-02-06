@@ -1,4 +1,4 @@
-.card-product {
+.card-product-page {
   overflow: hidden;
   height: 120px;
   weight: 300px;
@@ -9,19 +9,19 @@
   background: #C9C9EE;
 }
 
-.card-product img {
+.card-product-page img {
   height: 100%;
   width: 120px;
   object-fit: cover;
 }
 
-.card-product h2 {
+.card-product-page h2 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
 
-.card-product p {
+.card-product-page p {
   font-size: 12px;
   line-height: 1.4;
   opacity: .7;
@@ -29,6 +29,6 @@
   margin-top: 8px;
 }
 
-.card-product .card-product-infos {
+.card-product-page .card-product-infos {
   padding: 16px;
 }
