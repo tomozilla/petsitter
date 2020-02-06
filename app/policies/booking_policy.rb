@@ -10,6 +10,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
-    record.sitter == user
+    # record.sitter == user
+    true
   end
 end
