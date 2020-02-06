@@ -1,7 +1,7 @@
-<li></li>
-<li><%= sitter_booking.id %></li>
-<li><%= sitter_booking.status %></li>
-<li><%= sitter_booking.job.starts_at %></li>
-<li><%= sitter_booking.job.ends_at %></li>
-<li><%= sitter_booking.job.owner.name %></li>
-<li><%= sitter_booking.job.location %></li>
+
+<tr><td scope="col"> <h3><%= sitter_booking.id %></h3></td>
+<td scope="col"> <h3><%= sitter_booking.status %></h3></td>
+<td scope="col"><p><%= sitter_booking.job.starts_at %></p></td>
+<td scope="col"><p><%= sitter_booking.job.ends_at %></p></td>
+<td scope="col"><%= sitter_booking.job.owner.name %></p></td>
+<td scope="col"><%= sitter_booking.job.location %></p></td>
